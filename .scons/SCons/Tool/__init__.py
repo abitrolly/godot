@@ -46,22 +46,22 @@ import SCons.Builder
 import SCons.Errors
 import SCons.Node.FS
 import SCons.Scanner
-import SCons.Scanner.C
-import SCons.Scanner.D
-import SCons.Scanner.LaTeX
-import SCons.Scanner.Prog
-import SCons.Scanner.SWIG
-from SCons.Tool.linkCommon import LibSymlinksActionFunction, LibSymlinksStrFun
+#import SCons.Scanner.C
+#import SCons.Scanner.D
+#import SCons.Scanner.LaTeX
+#import SCons.Scanner.Prog
+#import SCons.Scanner.SWIG
+#from SCons.Tool.linkCommon import LibSymlinksActionFunction, LibSymlinksStrFun
 
 DefaultToolpath = []
 
-CScanner = SCons.Scanner.C.CScanner()
-DScanner = SCons.Scanner.D.DScanner()
-LaTeXScanner = SCons.Scanner.LaTeX.LaTeXScanner()
-PDFLaTeXScanner = SCons.Scanner.LaTeX.PDFLaTeXScanner()
-ProgramScanner = SCons.Scanner.Prog.ProgramScanner()
+#CScanner = SCons.Scanner.C.CScanner()
+#DScanner = SCons.Scanner.D.DScanner()
+#LaTeXScanner = SCons.Scanner.LaTeX.LaTeXScanner()
+#PDFLaTeXScanner = SCons.Scanner.LaTeX.PDFLaTeXScanner()
+#ProgramScanner = SCons.Scanner.Prog.ProgramScanner()
 SourceFileScanner = SCons.Scanner.ScannerBase({}, name='SourceFileScanner')
-SWIGScanner = SCons.Scanner.SWIG.SWIGScanner()
+#SWIGScanner = SCons.Scanner.SWIG.SWIGScanner()
 
 CSuffixes = [".c", ".C", ".cxx", ".cpp", ".c++", ".cc",
              ".h", ".H", ".hxx", ".hpp", ".hh",
@@ -77,22 +77,22 @@ LaTeXSuffixes = [".tex", ".ltx", ".latex"]
 
 SWIGSuffixes = ['.i']
 
-for suffix in CSuffixes:
-    SourceFileScanner.add_scanner(suffix, CScanner)
+#for suffix in CSuffixes:
+#    SourceFileScanner.add_scanner(suffix, CScanner)
 
-for suffix in DSuffixes:
-    SourceFileScanner.add_scanner(suffix, DScanner)
+#for suffix in DSuffixes:
+#    SourceFileScanner.add_scanner(suffix, DScanner)
 
-for suffix in SWIGSuffixes:
-    SourceFileScanner.add_scanner(suffix, SWIGScanner)
+#for suffix in SWIGSuffixes:
+#    SourceFileScanner.add_scanner(suffix, SWIGScanner)
 
 # FIXME: what should be done here? Two scanners scan the same extensions,
 # but look for different files, e.g., "picture.eps" vs. "picture.pdf".
 # The builders for DVI and PDF explicitly reference their scanners
 # I think that means this is not needed???
-for suffix in LaTeXSuffixes:
-    SourceFileScanner.add_scanner(suffix, LaTeXScanner)
-    SourceFileScanner.add_scanner(suffix, PDFLaTeXScanner)
+#for suffix in LaTeXSuffixes:
+#    SourceFileScanner.add_scanner(suffix, LaTeXScanner)
+#    SourceFileScanner.add_scanner(suffix, PDFLaTeXScanner)
 
 # Tool aliases are needed for those tools whose module names also
 # occur in the python standard library (This causes module shadowing and
@@ -276,7 +276,7 @@ class Tool:
         return self.name
 
 
-LibSymlinksAction = SCons.Action.Action(LibSymlinksActionFunction, LibSymlinksStrFun)
+# LibSymlinksAction = SCons.Action.Action(LibSymlinksActionFunction, LibSymlinksStrFun)
 
 
 ##########################################################################

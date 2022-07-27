@@ -122,18 +122,18 @@ SharedCheck = SCons.Action.Action(SharedFlagChecker, None)
 # SourceFileScanner part of the public interface.  Don't break their
 # SConscript files until we've given them some fair warning and a
 # transition period.
-CScan = SCons.Tool.CScanner
-DScan = SCons.Tool.DScanner
-LaTeXScan = SCons.Tool.LaTeXScanner
-ObjSourceScan = SCons.Tool.SourceFileScanner
-ProgScan = SCons.Tool.ProgramScanner
+#CScan = SCons.Tool.CScanner
+#DScan = SCons.Tool.DScanner
+#LaTeXScan = SCons.Tool.LaTeXScanner
+#ObjSourceScan = SCons.Tool.SourceFileScanner
+#ProgScan = SCons.Tool.ProgramScanner
 
 # These aren't really tool scanners, so they don't quite belong with
 # the rest of those in Tool/__init__.py, but I'm not sure where else
 # they should go.  Leave them here for now.
 
-DirScanner = SCons.Scanner.Dir.DirScanner()
-DirEntryScanner = SCons.Scanner.Dir.DirEntryScanner()
+#DirScanner = SCons.Scanner.Dir.DirScanner()
+#DirEntryScanner = SCons.Scanner.Dir.DirEntryScanner()
 
 # Actions for common languages.
 CAction = SCons.Action.Action("$CCCOM", "$CCCOMSTR")

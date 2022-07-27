@@ -137,6 +137,8 @@ Defaults need Scanner parts and Tool.
 Tool unconditionally imports Scanner.C and a bunch of others (patchable). Maybe
 it is possible to create delayed import.
 
+    # commented all unconditionally imported tools
+
 
 
 
