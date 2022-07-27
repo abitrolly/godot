@@ -1,0 +1,142 @@
+Download SCons (new version).
+
+    wget http://prdownloads.sourceforge.net/scons/scons-local-4.3.0.zip
+
+Unpack (new version dir).
+
+    unzip scons-local-4.3.0.zip -d _tmp_scons
+
+Inspect contents.
+
+	$ tree _tmp_scons -L 3 -F --dirsfirst
+	_tmp_scons/
+	├── scons-local-4.3.0/
+	│   └── SCons/
+	│       ├── compat/
+	│       ├── Node/
+	│       ├── Platform/
+	│       ├── Scanner/
+	│       ├── Script/
+	│       ├── Tool/
+	│       ├── Utilities/
+	│       ├── Variables/
+	│       ├── Action.py
+	│       ├── Builder.py
+	│       ├── CacheDir.py
+	│       ├── Conftest.py
+	│       ├── cpp.py
+	│       ├── dblite.py
+	│       ├── Debug.py
+	│       ├── Defaults.py
+	│       ├── Environment.py
+	│       ├── EnvironmentValues.py
+	│       ├── EnvironmentValuesTest.py
+	│       ├── Errors.py
+	│       ├── Executor.py
+	│       ├── exitfuncs.py
+	│       ├── __init__.py
+	│       ├── Job.py
+	│       ├── __main__.py
+	│       ├── Memoize.py
+	│       ├── PathList.py
+	│       ├── SConf.py
+	│       ├── SConsign.py
+	│       ├── Subst.py
+	│       ├── Taskmaster.py
+	│       ├── Util.py
+	│       └── Warnings.py
+	├── scons-4.3.0.bat
+	├── scons.bat
+	├── scons-configure-cache.py
+	├── sconsign.py
+	├── scons-LICENSE
+	├── scons.py*
+	├── scons-README
+	└── scons-time.py
+
+	10 directories, 33 files
+
+Copy top level executable script.
+
+   cp _tmp_scons/scons.py scons
+
+Which will fail.
+
+    $ ./scons
+    SCons import failed. Unable to find engine files in:
+      /home/anatoli/g/godot/src/..
+    Traceback (most recent call last):
+      File "/home/anatoli/g/godot/src/./scons", line 89, in <module>
+        import SCons.Script
+    ModuleNotFoundError: No module named 'SCons'
+
+Add necessary directory structure and copy files one by one.
+
+    mkdir -p .scons/SCons/Script
+    cp _tmp_scons/scons-local-4.3.0/SCons/Script/__init__.py .scons/SCons/Script/__init__.py
+
+Set SCONS_LIB_DIR (patch it later) to `.scons` where files are.
+
+    $ SCONS_LIB_DIR=.scons ./scons
+    SCons import failed. Unable to find engine files in:
+      .scons
+      /home/anatoli/g/godot/src/..
+    Traceback (most recent call last):
+      File "/home/anatoli/g/godot/src/./scons", line 89, in <module>
+        import SCons.Script
+      File "/home/anatoli/g/godot/src/.scons/SCons/Script/__init__.py", line 71, in <module>
+        import SCons.Action
+    ModuleNotFoundError: No module named 'SCons.Action'
+
+Copy the rest.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Action.py .scons/SCons
+
+TODO: Action import SCons.Debug is too generic
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Debug.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Errors.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Util.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Subst.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Builder.py .scons/SCons
+
+At this point a clarification is needed for SCons Builder vs Action.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Executor.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Memoize.py .scons/SCons
+
+    mkdir .scons/SCons/compat
+    cp _tmp_scons/scons-local-4.3.0/SCons/compat/__init__.py .scons/SCons/compat
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/CacheDir.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Warnings.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Environment.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Defaults.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/PathList.py .scons/SCons
+
+    mkdir .scons/SCons/Node
+    cp _tmp_scons/scons-local-4.3.0/SCons/Node/__init__.py .scons/SCons/Node
+
+Things that parse sources to get more dependencies?
+
+    mkdir .scons/SCons/Scanner
+    cp _tmp_scons/scons-local-4.3.0/SCons/Scanner/__init__.py .scons/SCons/Scanner
+
+Scanner needs Node pieces.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Node/FS.py .scons/SCons/Node
+    cp _tmp_scons/scons-local-4.3.0/SCons/Node/Alias.py .scons/SCons/Node
+
+Defaults need Scanner parts and Tool.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Scanner/Dir.py .scons/SCons/Scanner
+
+    mkdir .scons/SCons/Tool
+    cp _tmp_scons/scons-local-4.3.0/SCons/Tool/__init__.py .scons/SCons/Tool
+
+Tool unconditionally imports Scanner.C and a bunch of others (patchable). Maybe
+it is possible to create delayed import.
+
+
+
+
