@@ -165,4 +165,27 @@ Even more files. Guess that's most useful cases.
 
     cp _tmp_scons/scons-local-4.3.0/SCons/Platform/virtualenv.py .scons/SCons/Platform
 
+This looks like SCons's argparse.
 
+    mkdir .scons/SCons/Variables
+    cp _tmp_scons/scons-local-4.3.0/SCons/Variables/__init__.py .scons/SCons/Variables/
+    cp _tmp_scons/scons-local-4.3.0/SCons/Variables/BoolVariable.py .scons/SCons/Variables/
+    cp _tmp_scons/scons-local-4.3.0/SCons/Variables/EnumVariable.py .scons/SCons/Variables/
+
+    # these are unused by `godot`, so I'd rather comment them
+    cp _tmp_scons/scons-local-4.3.0/SCons/Variables/ListVariable.py .scons/SCons/Variables/
+    cp _tmp_scons/scons-local-4.3.0/SCons/Variables/PackageVariable.py .scons/SCons/Variables/
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Variables/PathVariable.py .scons/SCons/Variables/
+
+This might be SCons's `__main__` function.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Script/Main.py .scons/SCons/Script/
+
+Interactive CLI interface.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Script/Interactive.py .scons/SCons/Script/
+
+This might be the missing SConstruct header, but I am not sure.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Script/SConscript.py .scons/SCons/Script/
