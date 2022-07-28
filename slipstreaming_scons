@@ -139,6 +139,30 @@ it is possible to create delayed import.
 
     # commented all unconditionally imported tools
 
+Need more files.
 
+    cp _tmp_scons/scons-local-4.3.0/SCons/Node/Python.py .scons/SCons/Node
+
+    mkdir .scons/SCons/Platform
+    cp _tmp_scons/scons-local-4.3.0/SCons/Platform/__init__.py .scons/SCons/Platform
+
+Some things that may affect startup time.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/SConf.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Job.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/Taskmaster.py .scons/SCons
+
+These really look like they could belong to tools.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Conftest.py .scons/SCons
+
+Some tools to work with serialized data.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/SConsign.py .scons/SCons
+    cp _tmp_scons/scons-local-4.3.0/SCons/dblite.py .scons/SCons
+
+Even more files. Guess that's most useful cases.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Platform/virtualenv.py .scons/SCons/Platform
 
 
