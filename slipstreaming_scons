@@ -189,3 +189,8 @@ Interactive CLI interface.
 This might be the missing SConstruct header, but I am not sure.
 
     cp _tmp_scons/scons-local-4.3.0/SCons/Script/SConscript.py .scons/SCons/Script/
+
+More missing bits.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/__init__.py .scons/SCons/
+    cp _tmp_scons/scons-local-4.3.0/SCons/Script/SConsOptions.py .scons/SCons/Script/
