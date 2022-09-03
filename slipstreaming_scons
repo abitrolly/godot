@@ -194,3 +194,9 @@ More missing bits.
 
     cp _tmp_scons/scons-local-4.3.0/SCons/__init__.py .scons/SCons/
     cp _tmp_scons/scons-local-4.3.0/SCons/Script/SConsOptions.py .scons/SCons/Script/
+
+SCons default environment dynamically pulls system dependent platform modules.
+
+    cp _tmp_scons/scons-local-4.3.0/SCons/Platform/posix.py .scons/SCons/Platform/
+
+TODO: Add other used platforms
