@@ -352,14 +352,14 @@ def get_MkdirBuilder():
     global MkdirBuilder
     if MkdirBuilder is None:
         import SCons.Builder
-        import SCons.Defaults
+        import SCons.Scanner.Dir
         # "env" will get filled in by Executor.get_build_env()
         # calling SCons.Defaults.DefaultEnvironment() when necessary.
         MkdirBuilder = SCons.Builder.Builder(action = Mkdir,
                                              env = None,
                                              explain = None,
                                              is_explicit = None,
-                                             target_scanner = SCons.Defaults.DirEntryScanner,
+                                             target_scanner = SCons.Scanner.Dir.DirEntryScanner(),
                                              name = "MkdirBuilder")
     return MkdirBuilder
 
