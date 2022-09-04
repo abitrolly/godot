@@ -200,3 +200,9 @@ SCons default environment dynamically pulls system dependent platform modules.
     cp _tmp_scons/scons-local-4.3.0/SCons/Platform/posix.py .scons/SCons/Platform/
 
 TODO: Add other used platforms
+
+Default environment needs default tool(s).
+
+   cp _tmp_scons/scons-local-4.3.0/SCons/Tool/default.py .scons/SCons/Tool
+
+TODO: Hacking tool autodiscovery/speedup happens here.
